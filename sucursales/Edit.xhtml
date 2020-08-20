@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SucursalesEditDlg" widgetVar="SucursalesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSucursalesTitle}">
+            <h:form id="SucursalesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sucursalesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{sucursalesController.selected.id}" title="#{bundle.EditSucursalesTitle_id}" required="true" requiredMessage="#{bundle.EditSucursalesRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{sucursalesController.selected.nombre}" title="#{bundle.EditSucursalesTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_ubicacion}" for="ubicacion" />
+                        <p:inputText id="ubicacion" value="#{sucursalesController.selected.ubicacion}" title="#{bundle.EditSucursalesTitle_ubicacion}" />
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{sucursalesController.selected.direccion}" title="#{bundle.EditSucursalesTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_encargado}" for="encargado" />
+                        <p:inputText id="encargado" value="#{sucursalesController.selected.encargado}" title="#{bundle.EditSucursalesTitle_encargado}" />
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_dimension}" for="dimension" />
+                        <p:inputText id="dimension" value="#{sucursalesController.selected.dimension}" title="#{bundle.EditSucursalesTitle_dimension}" />
+                        <p:outputLabel value="#{bundle.EditSucursalesLabel_ciudad}" for="ciudad" />
+                        <p:inputText id="ciudad" value="#{sucursalesController.selected.ciudad}" title="#{bundle.EditSucursalesTitle_ciudad}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sucursalesController.update}" value="#{bundle.Save}" update="display,:SucursalesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SucursalesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SucursalesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
